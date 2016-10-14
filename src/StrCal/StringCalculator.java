@@ -16,6 +16,7 @@ public class StringCalculator {
 			for(String num : ints) {
 				int number = Integer.parseInt(num);
 				if(number < 0) { negs.add(number); }
+				if(number > 1000) { number = 0; }
 				sum += number;
 				}
 			if(!negs.isEmpty()) {
@@ -31,6 +32,7 @@ public class StringCalculator {
 		if(number < 0) {
 			throw new Exception(negatives + number);
 		}
+		if(number > 1000) { number = 0; }
 		sum += number;
 		return sum;
 	}

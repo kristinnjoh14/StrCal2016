@@ -28,6 +28,11 @@ public class StringCalculatorTest {
 		//assertEquals(StringCalculator.add("21474836472147483647,1"), 21474836472147483648);
 		//Huh, no clever behind the scenes magic to make 2^31 work, no long cast or anything
 	}
+	@Test
+	public void testOver9000() throws Exception {
+		assertEquals(StringCalculator.add("1,1000"),1001);
+		assertEquals(StringCalculator.add("1,2,1001,9001,3"),6);
+	}
 	@Test(expected = Exception.class)
 	public void testOneNegative() throws Exception {
 		StringCalculator.add("-1");
