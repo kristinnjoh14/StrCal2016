@@ -48,7 +48,7 @@ public class StringCalculatorTest {
 	@Test
 	public void testNewDelimiter() throws Exception {
 		assertEquals(StringCalculator.add("//d\n1d2d3"),6);
-		//assertEquals(StringCalculator.add("//;\n1,2\n3;4"),10);
+		assertEquals(StringCalculator.add("//;\n1,2\n3;4"),10);
 	}
 	public void testBigDelimiter() throws Exception {
 		assertEquals(StringCalculator.add("//delim\n1delim2delim3"),6);
