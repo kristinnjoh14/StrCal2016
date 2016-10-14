@@ -9,31 +9,30 @@ public class StringCalculator {
 	public static int add(String x) throws Exception {
 		if(x.isEmpty()) { return 0; }
 		int sum = 0;
+		String delimiter = "";
 		ArrayList<Integer> negs = new ArrayList<Integer>();
 		String negatives = "Negative numbers not allowed: ";
-		if(x.contains(",")||x.contains("\n")) { 
-			String[] ints = x.split("\\n|,");
-			for(String num : ints) {
-				int number = Integer.parseInt(num);
-				if(number < 0) { negs.add(number); }
-				if(number > 1000) { number = 0; }
-				sum += number;
-				}
-			if(!negs.isEmpty()) {
-				for(int neg : negs) {
-					negatives.concat(neg + ",");
-				}
-				negatives = negatives.substring(0, negatives.length() -2);
-				throw new Exception(negatives);
+		if(x.contains("//")) {
+			x = x.substring(2);
+			String[] delimAndNums = x.split("\\n");
+			delimiter = "|" + delimAndNums[0];
+			x = x.substring(delimAndNums[0].length() +1);
+		}
+		String regex = "\\n|," + delimiter; 
+		String[] ints = x.split(regex);
+		for(String num : ints) {
+			int number = Integer.parseInt(num);
+			if(number < 0) { negs.add(number); }
+			if(number > 1000) { number = 0; }
+			sum += number;
 			}
-			return sum;
+		if(!negs.isEmpty()) {
+			for(int neg : negs) {
+				negatives.concat(neg + ",");
+			}
+			negatives = negatives.substring(0, negatives.length() -2);
+			throw new Exception(negatives);
 		}
-		int number = Integer.parseInt(x);
-		if(number < 0) {
-			throw new Exception(negatives + number);
-		}
-		if(number > 1000) { number = 0; }
-		sum += number;
 		return sum;
 	}
 }

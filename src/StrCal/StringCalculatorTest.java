@@ -45,5 +45,13 @@ public class StringCalculatorTest {
 	public void testMoreNegatives() throws Exception {
 		StringCalculator.add("-1,-6,-17,-53");
 	}
+	@Test
+	public void testNewDelimiter() throws Exception {
+		assertEquals(StringCalculator.add("//d\n1d2d3"),6);
+		//assertEquals(StringCalculator.add("//;\n1,2\n3;4"),10);
+	}
+	public void testBigDelimiter() throws Exception {
+		assertEquals(StringCalculator.add("//delim\n1delim2delim3"),6);
+	}
 
 }
