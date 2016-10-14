@@ -22,7 +22,8 @@ public class StringCalculatorTest {
 		assertEquals(StringCalculator.add("32,68"), 100);
 		assertEquals(StringCalculator.add("100"), 100);
 		assertEquals(StringCalculator.add("123,234,345,456,567"),1725);
-		
+		assertEquals(StringCalculator.add("123,234\n345,456\n567"),1725);
+		assertEquals(StringCalculator.add("1\n2\n3"),6);
 		//assertEquals(StringCalculator.add("21474836472147483647,1"), 21474836472147483648);
 		//Huh, no clever behind the scenes magic to make 2^31 work, no long cast or anything
 	}
