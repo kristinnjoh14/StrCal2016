@@ -1,19 +1,37 @@
 package StrCal;
 
+import java.util.ArrayList;
+
 public class StringCalculator {
 	public static int add() {
 		return 0;
 	}
-	public static int add(String x) {
+	public static int add(String x) throws Exception {
 		if(x.isEmpty()) { return 0; }
+		int sum = 0;
+		ArrayList<Integer> negs = new ArrayList<Integer>();
+		String negatives = "Negative numbers not allowed: ";
 		if(x.contains(",")||x.contains("\n")) { 
-			int sum = 0;
 			String[] ints = x.split("\\n|,");
 			for(String num : ints) {
-				sum += Integer.parseInt(num);
+				int number = Integer.parseInt(num);
+				if(number < 0) { negs.add(number); }
+				sum += number;
+				}
+			if(!negs.isEmpty()) {
+				for(int neg : negs) {
+					negatives.concat(neg + ",");
+				}
+				negatives = negatives.substring(0, negatives.length() -2);
+				throw new Exception(negatives);
 			}
 			return sum;
 		}
-		return Integer.parseInt(x);
+		int number = Integer.parseInt(x);
+		if(number < 0) {
+			throw new Exception(negatives + number);
+		}
+		sum += number;
+		return sum;
 	}
 }
